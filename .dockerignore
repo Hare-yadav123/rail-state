@@ -1,0 +1,16 @@
+myvnv/
+venv/
+
+.git
+.gitignore
+
+.env
+
+__pycache__/
+*.pyc
+
+staticfiles/
+
+.vscode/
+
+media/
