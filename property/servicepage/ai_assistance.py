@@ -3,8 +3,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status 
 import requests
-from faster_whisper import WhisperModel
-import gtts
 import json
 
 HF_TOKEN = settings.HF_TOKEN
