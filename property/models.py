@@ -237,7 +237,7 @@ class AgentProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='user_agent_profile')         #onetoone from User
     agencyname = models.CharField(max_length=128,blank=True,null=True)
     licensenumber = models.CharField(max_length=120,unique=True)
-    contactnumber = models.CharField(max_length=15,validators=[RegexValidator(regex=r'\d{10,15}$')],blank=True,null=True)
+    contactnumber = models.CharField(max_length=20,validators=[RegexValidator(regex=r'\d{10,15}$')],blank=True,null=True)
     verified = models.BooleanField(default=False)
     location = models.CharField(null=True,blank=True)
     cts = models.DateTimeField(auto_now_add=True)
