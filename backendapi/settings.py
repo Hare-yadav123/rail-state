@@ -209,8 +209,8 @@ environ.Env.read_env()    #read only environ file
 load_dotenv()
 
 SECRET_KEY= config("DJANGO_SECRET_KEY")
-
 environ.Env.read_env(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
+
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = env("EMAIL_PORT")
