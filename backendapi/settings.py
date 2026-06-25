@@ -176,6 +176,9 @@ REST_FRAMEWORK = {
 
 
 #============cors config================
+CORS_ALLOWED_ORIGINS=[
+   'https://test-silk-gamma-11.vercel.app',
+]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = False
@@ -183,9 +186,7 @@ CORS_ALLOW_HEADERS = [
     "content-type",
     "authorization",
 ]
-CORS_ALLOWED_ORIGINS=[
-   'https://test-silk-gamma-11.vercel.app',
-]
+
 
 
 #===============SimpleJWT Token config================
