@@ -184,7 +184,7 @@ CORS_ALLOW_HEADERS = [
     "authorization",
 ]
 CORS_ALLOWED_ORIGINS=[
-    "http://localhost:3000",
+   'https://test-silk-gamma-11.vercel.app',
 ]
 
 
