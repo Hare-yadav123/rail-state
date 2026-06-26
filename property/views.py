@@ -989,87 +989,91 @@ class LoginIntApi(APIView):
 class CaptchaImageView(APIView):
     """Create Captcha image for login user"""
 
-    # def get(self, request, captcha_key):
-    #     # Get the captcha text from cache
-    #     captcha_text = cache.get(captcha_key)
-    #     if not captcha_text:
-    #         return Response({"error": "Captcha expired"}, status=404)
-
-    #     # Generate an image
-    #     font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
-    #     try:
-    #         fontsize = ImageFont.truetype(font_path,50)
-    #     except:
-    #         fontsize = ImageFont.load_default()
-
-    #     captcha_text = str(captcha_text)
-    #     img = Image.new("RGB", (250, 80), color=(255, 255, 255))
-    #     d = ImageDraw.Draw(img)
-    #     d.text((20, 10), captcha_text, fill=(0, 0, 0),font=fontsize)  # simple black text
-
-    #     buf = io.BytesIO()
-    #     img.save(buf, format="PNG")
-    #     buf.seek(0)
-
-    #     return HttpResponse(buf, content_type="image/png")
     def get(self, request, captcha_key):
-
+        # Get the captcha text from cache
         captcha_text = cache.get(captcha_key)
-
         if not captcha_text:
-            return Response(
-                {"error":"Captcha expired"},
-                status=404
-            )
+            return Response({"error": "Captcha expired"}, status=404)
 
-
-        font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
-
+        # Generate an image
+        # font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
 
         try:
-            fontsize = ImageFont.truetype(
-                str(font_path),
-                65
-            )
-            print("FONT OK")
-
-        except Exception as e:
-            print("FONT ERROR",e)
+            fontsize = ImageFont.truetype("arial.ttf",50)
+        except:
             fontsize = ImageFont.load_default()
 
-
-        img = Image.new(
-            "RGB",
-            (250,80),
-            "white"
-        )
-
-
+        captcha_text = str(captcha_text)
+        img = Image.new("RGB", (250, 80), color=(255, 255, 255))
         d = ImageDraw.Draw(img)
-
-
-        d.text(
-            (20,10),
-            str(captcha_text),
-            fill="black",
-            font=fontsize
-        )
-
+        d.text((20, 10), captcha_text, fill=(0, 0, 0),font=fontsize)  # simple black text
 
         buf = io.BytesIO()
-
-        img.save(
-            buf,
-            "PNG"
-        )
-
+        img.save(buf, format="PNG")
         buf.seek(0)
 
+        return HttpResponse(buf, content_type="image/png")
 
-        return HttpResponse(
-            buf.getvalue(),
-            content_type="image/png"
-        )
+
+
+    # def get(self, request, captcha_key):
+
+    #     captcha_text = cache.get(captcha_key)
+
+    #     if not captcha_text:
+    #         return Response(
+    #             {"error":"Captcha expired"},
+    #             status=404
+    #         )
+
+
+    #     font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
+
+
+    #     try:
+    #         fontsize = ImageFont.truetype(
+    #             str(font_path),
+    #             65
+    #         )
+    #         print("FONT OK")
+
+    #     except Exception as e:
+    #         print("FONT ERROR",e)
+    #         fontsize = ImageFont.load_default()
+
+
+    #     img = Image.new(
+    #         "RGB",
+    #         (250,80),
+    #         "white"
+    #     )
+
+
+    #     d = ImageDraw.Draw(img)
+
+
+    #     d.text(
+    #         (20,10),
+    #         str(captcha_text),
+    #         fill="black",
+    #         font=fontsize
+    #     )
+
+
+    #     buf = io.BytesIO()
+
+    #     img.save(
+    #         buf,
+    #         "PNG"
+    #     )
+
+    #     buf.seek(0)
+
+
+    #     return HttpResponse(
+    #         buf.getvalue(),
+    #         content_type="image/png"
+    #     )
 
 class CatcheLoginApi(APIView):
 
