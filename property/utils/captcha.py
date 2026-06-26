@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from rest_framework.permissions import BasePermission
 from django.core.cache import cache
 from rest_framework.response import Response
-
+from django.conf import settings
 # cache base captcha
 def get(self,request):
     """Genereat cache base cpatcha  for login register user wchich not save in database, and varify captcha using captcha key """
@@ -27,15 +27,17 @@ def get(self,request):
 
 # Generate captcha image with colore
 def gen_cap_img(cap_text):
-    image = Image.new("RGB",(120,40),color=(255,255,255))
+    image = Image.new("RGB",(250,80),color=(255,255,255))
     draw = ImageDraw.Draw(image)
 
+    font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
+
     try:
-        fontimg = ImageFont.truetype("arial.ttf",28)
+        fontimg = ImageFont.truetype(font_path,50)
     except:
         fontimg = ImageFont.load_default()
     
-    draw.text((10,5) , cap_text,fill="black",font=fontimg) 
+    draw.text((20,10) , cap_text,fill="black",font=fontimg) 
     buffer = BytesIO()
     image.save(buffer,format="PNG")
     buffer.seek(0)
