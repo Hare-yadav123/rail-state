@@ -1040,7 +1040,7 @@ class CaptchaImageView(APIView):
 
         img = Image.new(
             "RGB",
-            (300,100),
+            (250,80),
             "white"
         )
 
@@ -1049,7 +1049,7 @@ class CaptchaImageView(APIView):
 
 
         d.text(
-            (30,15),
+            (20,10),
             str(captcha_text),
             fill="black",
             font=fontsize
