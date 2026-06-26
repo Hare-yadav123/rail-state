@@ -996,15 +996,15 @@ class CaptchaImageView(APIView):
             return Response({"error": "Captcha expired"}, status=404)
 
         # Generate an image
-        # font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
+        font_path = settings.BASE_DIR / "fonts" / "arial.ttf"
 
         try:
-            fontsize = ImageFont.truetype("arial.ttf",50)
+            fontsize = ImageFont.truetype("arial.ttf",15)
         except:
             fontsize = ImageFont.load_default()
 
         captcha_text = str(captcha_text)
-        img = Image.new("RGB", (250, 80), color=(255, 255, 255))
+        img = Image.new("RGB", (120, 40), color=(255, 255, 255))
         d = ImageDraw.Draw(img)
         d.text((20, 10), captcha_text, fill=(0, 0, 0),font=fontsize)  # simple black text
 
